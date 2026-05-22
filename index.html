@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Мінімалістична Рулетка з Кабінетом</title>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+
+    <header class="auth-header">
+        <div id="authBlock" class="auth-block">
+            <div id="authLoading">Завантаження акаунта...</div>
+
+            <form id="authForm" class="auth-inline-form hidden">
+                <input type="email" id="authEmail" placeholder="Email" required>
+                <input type="password" id="authPassword" placeholder="Пароль" required>
+                <button type="button" id="loginBtn">Увійти</button>
+                <button type="button" id="registerBtn" class="btn-secondary">Реєстрація</button>
+            </form>
+
+            <div id="userProfile" class="user-profile hidden">
+                <button id="openProfileBtn" class="btn-profile-link">👤 Налаштування профілю</button>
+                <button id="logoutBtn" class="btn-danger">Вийти</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-container">
+        <div class="wheel-section">
+            <div class="roulette-selector-zone">
+                <label for="rouletteSelect">Ваша рулетка:</label>
+                <<select id="rouletteSelect">
+                    <option value="">Завантаження кімнат...</option>
+                </select>
+                <button id="createRouletteBtn" class="btn-small">+ Створити</button>
+                <button id="deleteRouletteBtn" class="btn-small btn-danger" title="Видалити поточну рулетку">🗑</button>
+            </div>
+
+            <div class="arrow"></div>
+            <div class="canvas-wrapper">
+                <canvas id="wheelCanvas" width="360" height="360"></canvas>
+            </div>
+            <button id="spinBtn">Крутити колесо</button>
+            <div id="winnerDisplay" class="winner-text"></div>
+        </div>
+
+        <div class="admin-section">
+            <h2>Налаштування секторів</h2>
+
+            <form id="addItemForm" class="add-form">
+                <input type="text" id="itemTextInput" placeholder="Назва варіанту" required>
+                <input type="color" id="itemColorInput" value="#6366f1">
+                <button type="submit">Додати</button>
+            </form>
+
+            <div id="itemsList" class="items-list"></div>
+        </div>
+    </div>
+
+    <div id="profileModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Мій Акаунт</h3>
+                <button id="closeProfileBtn" class="close-modal-btn">&times;</button>
+            </div>
+            <hr class="modal-divider">
+
+            <div class="modal-body">
+                <div class="profile-info-group">
+                    <label>Ваш поточний Email:</label>
+                    <p id="modalEmailDisplay" class="profile-static-email">Завантаження...</p>
+                </div>
+
+                <form id="changePasswordForm" class="profile-form">
+                    <div class="input-group">
+                        <label for="newPassword">Новий пароль:</label>
+                        <input type="password" id="newPassword" placeholder="Введіть новий пароль" required minlength="6">
+                    </div>
+                    <button type="submit" class="btn-save-profile">Оновити пароль</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
